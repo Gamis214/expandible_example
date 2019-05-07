@@ -13,17 +13,22 @@ import android.widget.TextView;
 
 import net.cachapa.expandablelayout.ExpandableLayout;
 
+import java.util.HashMap;
+import java.util.List;
+
 public class CustomAdapterMain extends RecyclerView.Adapter<CustomAdapterMain.ItemHolder> {
 
     private static final int UNSELECTED = -1;
 
     private RecyclerView recyclerView;
+    private HashMap<String, List<String>> lstMap;
     private Context context;
     private int selectedItem = UNSELECTED;
 
-    public CustomAdapterMain(RecyclerView recyclerView, Context context) {
+    public CustomAdapterMain(RecyclerView recyclerView, Context context, HashMap<String, List<String>> lstMap) {
         this.recyclerView = recyclerView;
         this.context = context;
+        this.lstMap = lstMap;
     }
 
     @Override
@@ -39,7 +44,7 @@ public class CustomAdapterMain extends RecyclerView.Adapter<CustomAdapterMain.It
 
     @Override
     public int getItemCount() {
-        return 100;
+        return lstMap.size();
     }
 
     public class ItemHolder extends RecyclerView.ViewHolder implements View.OnClickListener, ExpandableLayout.OnExpansionUpdateListener {
@@ -64,14 +69,18 @@ public class CustomAdapterMain extends RecyclerView.Adapter<CustomAdapterMain.It
         }
 
         public void bind() {
+
+            Object[] keys = lstMap.keySet().toArray();
+            List<String> lstValues = lstMap.get(keys[getAdapterPosition()]);
+
             int position = getAdapterPosition();
             boolean isSelected = position == selectedItem;
 
-            expandButton.setText(position + ". Tap to expand");
+            expandButton.setText((String)keys[getAdapterPosition()]);
             expandButton.setSelected(isSelected);
             expandableLayout.setExpanded(isSelected, false);
 
-            subRecyclerView.setAdapter(new CustomAdapterSub(position));
+            subRecyclerView.setAdapter(new CustomAdapterSub(position,lstValues));
         }
 
         @Override

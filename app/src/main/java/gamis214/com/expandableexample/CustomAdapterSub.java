@@ -7,12 +7,16 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import java.util.List;
+
 public class CustomAdapterSub extends RecyclerView.Adapter<CustomAdapterSub.SubViewHolder>{
 
     private int headerPosition;
+    private List<String> lstValues;
 
-    public CustomAdapterSub(int headerPosition){
+    public CustomAdapterSub(int headerPosition,List<String> lstValues){
         this.headerPosition = headerPosition;
+        this.lstValues = lstValues;
     }
 
     @NonNull
@@ -29,7 +33,7 @@ public class CustomAdapterSub extends RecyclerView.Adapter<CustomAdapterSub.SubV
 
     @Override
     public int getItemCount() {
-        return 5;
+        return lstValues.size();
     }
 
     public class SubViewHolder extends RecyclerView.ViewHolder {
@@ -39,7 +43,7 @@ public class CustomAdapterSub extends RecyclerView.Adapter<CustomAdapterSub.SubV
             txtSub = itemView.findViewById(R.id.txtSub);
         }
         public void bind(){
-            txtSub.setText("SubItem -> " + headerPosition);
+            txtSub.setText(""+lstValues.get(getAdapterPosition()));
         }
     }
 
