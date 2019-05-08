@@ -12,8 +12,7 @@ import java.util.List;
 public class MainActivity extends AppCompatActivity {
 
     private RecyclerView recyclerView;
-    private HashMap<String, List<String>> lstMap;
-    private List<String> lstString1,lstString2,lstString3;
+    private HashMap<String, List<String>> lstMap = new HashMap<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,34 +25,36 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void createListMap(){
-        lstMap = new HashMap<>();
-        lstString1 = new ArrayList<>();
-        lstString2 = new ArrayList<>();
-        lstString3 = new ArrayList<>();
+        for(int i=0;i<=2;i++){
+            List<String> lst = new ArrayList<>();
+            switch (i){
+                case 0:
+                    lst.add("a");
+                    lst.add("b");
+                    lst.add("c");
+                    lst.add("d");
+                    lst.add("e");
+                    lstMap.put("Letras",lst);
+                    break;
+                case 1:
+                    lst.add("1");
+                    lst.add("2");
+                    lst.add("3");
+                    lst.add("4");
+                    lst.add("5");
+                    lst.add("6");
+                    lst.add("7");
+                    lstMap.put("Numeros",lst);
+                    break;
+                case 2:
+                    lst.add("Manzana");
+                    lst.add("Pera");
+                    lst.add("Uvas");
+                    lst.add("Platano");
+                    lstMap.put("Frutas",lst);
+                    break;
+            }
 
-        lstString1.add("a");
-        lstString1.add("b");
-        lstString1.add("c");
-        lstString1.add("d");
-        lstString1.add("e");
-
-        lstMap.put("Letras",lstString1);
-
-        lstString2.add("1");
-        lstString2.add("2");
-        lstString2.add("3");
-        lstString2.add("4");
-        lstString2.add("5");
-        lstString2.add("6");
-        lstString2.add("7");
-
-        lstMap.put("Numeros",lstString2);
-
-        lstString3.add("Manzana");
-        lstString3.add("Pera");
-        lstString3.add("Uvas");
-        lstString3.add("Platano");
-
-        lstMap.put("Frutas",lstString3);
+        }
     }
 }

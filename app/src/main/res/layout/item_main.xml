@@ -5,15 +5,30 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical">
 
-        <TextView
-            android:id="@+id/expand_button"
-            style="@style/TextAppearance.AppCompat.Medium"
+        <RelativeLayout
+            android:id="@+id/container_expandable"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@drawable/selector"
             android:elevation="6dp"
             android:foreground="?selectableItemBackground"
-            android:padding="16dp" />
+            android:padding="16dp">
+
+            <TextView
+                android:id="@+id/expand_button"
+                style="@style/TextAppearance.AppCompat.Medium"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentStart="true"/>
+
+            <ImageView
+                android:id="@+id/img"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_plus"
+                android:layout_alignParentEnd="true"/>
+
+        </RelativeLayout>
 
         <net.cachapa.expandablelayout.ExpandableLayout
             android:id="@+id/expandable_layout"
